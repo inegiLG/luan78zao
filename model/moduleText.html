@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>textModule</title>
+	<script type="text/javascript" src="jquery.js"></script>
+	<script type="text/javascript" src ="mc_.js"></script>
+	<script>
+
+	</script>
+</head>
+<body>
+	<div id="div1">
+		<ul>
+			<li>1</li>
+			<li>2</li>
+			<li>3</li>
+			<li>4</li>
+			<li>5</li>
+		</ul>
+	</div>
+</body>
+	<script>
+	// //1.第一步定义一个模块，给出名字
+	// var module1 = mc.defineModule("module1");
+	// // var module1 = mc.getModule("module1");
+	// //2.为模块添加js
+
+	// module1.appendJS("ooo.js");
+	// //3.执行模块
+	// module1.execModule();
+	</script>
+	<script>
+	//1.第一步定义一个模块，给出名字
+	mc.defineModule("module2");
+	// var module2 = mc.getModule("module2");
+	//2.为模块添加js
+	// module2.appendJS("bbb.js");
+ //    module2.appendText("alert('jjjjhahaha');");
+    mc.ModuleBodyAppendJS("module2","bbb.js");
+	mc.ModuleBodyAppendText("module2","alert('jjjjhahaha');");
+	// //3.执行模块
+	mc.execModule("module2");
+	changeSS(400);
+	// alert("change to 400");
+	slist.a();
+
+
+
+
+
+
+
+
+
+//公共函数
+//对象转换为字符串
+function objConvertStr(o) {
+	if (o == undefined) {
+		return "";
+	}
+	var r = [];
+	if (typeof o == "string") return "\"" + o.replace(/([\"\\])/g, "\\$1").replace(/(\n)/g, "\\n").replace(/(\r)/g, "\\r").replace(/(\t)/g, "\\t") + "\"";
+	if (typeof o == "object") {
+		if (!o.sort) {
+			for (var i in o)
+				r.push("\"" + i + "\":" + objConvertStr(o[i]));
+			if ( !! document.all && !/^\n?function\s*toString\(\)\s*\{\n?\s*\[native code\]\n?\s*\}\n?\s*$/.test(o.toString)) {
+				r.push("toString:" + o.toString.toString());
+			}
+			r = "{" + r.join() + "}"
+		} else {
+			for (var i = 0; i < o.length; i++)
+				r.push(objConvertStr(o[i]))
+			r = "[" + r.join() + "]";
+		}
+		return r;
+	}
+	return o.toString().replace(/\"\:/g, '":""');
+}
+	</script>
+</html>

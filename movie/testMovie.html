@@ -1,0 +1,147 @@
+<html>
+<head>
+<title>123</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="jquery-ui.min.js"></script>
+<script type="text/javascript" src="anime.js"></script>
+</head>
+<body>
+<div > 
+	<a  href="javascript:cancelDrag()"><span id="123" >123132</span></a> 
+</div>
+<a  href="javascript:OnClick('http://www.baidu.com');"><span id="123" >123132</span></a>
+
+<div id ='outer'   style="border:1px solid;height:150px;width:150px"     >
+	<div id= 'inner'  style="border:1px solid;height:50px;width:50px" class="ui-drag" >内部div</div>
+外部div
+</div>
+<button onclick="enableDrag()">enable</button>
+
+
+<div id="101" class="ne_div" style="background-color: rgb(255, 255, 221); position: absolute; left: 546px; top: 42px; border: 2px solid; height: 80px; width: 90px; z-index: 50;" oncontextmenu="rightclick(this);return false;" data-type="router" data-state="selected">路由器</div>
+<div id="102" class="ne_div" style="background-color: rgb(255, 255, 221); position: absolute; left: 1058px; top: 217px; border: 2px solid; height: 80px; width: 90px; z-index: 50;" oncontextmenu="rightclick(this);return false;" data-type="switch" data-state="selected">交换机</div>
+<div id="103" class="ne_div" style="background-color:#ffd;position:absolute;left:20px;top:120px;border:2px solid;height:80px;width:90px;z-index:10" oncontextmenu="rightclick(this);return false;" data-type="firewall">防火墙</div>
+
+		<div style="float:left"><button id="startDiv" onclick="Movies.anime()" >动画开始</button></div>
+		<div style="float:left"><button id="pauseDiv" onclick="Movies.pause()" >动画暂停</button></div>
+		<div style="float:left"><button id="speedUpDiv" onclick="Movies.speedUp()" >加速</button></div>
+		<div style="float:left"><button id="speedDownDiv" onclick="Movies.speedDown()" >减速</button></div>
+
+
+<script>
+var draggable_options ={};
+draggable_options.containment="#outer";
+$(".ui-drag").draggable(draggable_options);
+
+
+function cancelDrag(){
+
+    var xx = $("#outer").html();
+	$("#outer").html(xx);
+}
+
+function enableDrag(){
+	var draggable_options ={};
+		draggable_options.containment="#outer";
+$(".ui-drag").draggable(draggable_options);
+}
+
+
+
+
+//$("#123").click();
+//document.getElementById("123").click();
+//alert($("#123").html());
+
+
+function OnClick(yoururl) {
+var open_link = window.open('', '_newtab');
+open_link.location =yoururl;
+}
+
+$("#inner").click(function(){
+alert("jquery-inner!");
+});
+
+var y ={};
+</script>
+
+<script type="text/javascript">
+
+
+ //document.getElementById('outer').innerHTML = document.getElementById('outer').innerHTML + abc;
+
+
+
+ (function(){ // 习惯性封闭，避免全局污染，请无视
+
+    // 待执行的函数
+    function a(){
+        // 检查 this 对象
+        alert((typeof this)+','+(typeof this.author));
+        return this;
+    }
+
+    function B(){
+        this.author = 'hutia';
+        return this;
+    }
+
+    // 把方法绑定在 函数B 这个对象上
+ //   B.methodA = a;
+
+    // 弹出 "function,undefined"
+  //  B.methodA();
+
+    // 另一种写法
+ //   a.call(B);
+    
+    var b = new B();
+
+    // 弹出 "object,string"
+//   	a.call(b);
+
+    // 更古怪的写法，加了链式调用，比较绕脑子，平时写代码别这样
+    // 弹出 "function,string"
+ //   B.call(B).methodA();
+})();
+
+
+
+
+
+//	var s='2012-08-22 12:12:12';
+//	var a=s.split(/[^0-9]/);
+//	for(var i =0;i<a.length;i++){
+//		alert(a[i]);
+//	}
+//	var d=new Date(a[0],a[1]-1,a[2],a[3],a[4],a[5]);
+//	alert( d.getTime() );	
+
+
+
+//
+var nets = {
+151:{id:151,neA_id:101,neB_id:102},
+152:{id:152,neA_id:102,neB_id:103},
+153:{id:153,neA_id:103,neB_id:101},
+154:{id:154,neA_id:103,neB_id:102}
+};
+Movies.setSteps = function (){
+		for(var i in nets){
+			var x1 = GetAbsoluteLocation(document.getElementById(nets[i].neA_id)).absoluteLeft+GetAbsoluteLocation(document.getElementById(nets[i].neA_id)).offsetWidth/2+this.left_offset;
+			var y1 = GetAbsoluteLocation(document.getElementById(nets[i].neA_id)).absoluteTop+GetAbsoluteLocation(document.getElementById(nets[i].neA_id)).offsetHeight/2+this.top_offset;
+			var x2 = GetAbsoluteLocation(document.getElementById(nets[i].neB_id)).absoluteLeft+GetAbsoluteLocation(document.getElementById(nets[i].neB_id)).offsetWidth/2+this.left_offset;
+			var y2 = GetAbsoluteLocation(document.getElementById(nets[i].neB_id)).absoluteTop+GetAbsoluteLocation(document.getElementById(nets[i].neB_id)).offsetHeight/2+this.top_offset;
+			var bagmoviex = new bagmovie({"x":x1-20,"y":y1},{"x":x2-20,"y":y2});
+			this.steps.push([bagmoviex]);
+		}	
+}
+Movies.anime();
+</script>
+
+
+
+</body>
+</html>

@@ -1,0 +1,8 @@
+1.写在js中的点击事件导入到模块里，在页面仍然好用，在html页面上写的onclick事件必须在
+最后用appendText加入导出用的变量export__，在这个对象中加入各个事件函数，页面上的函数
+才能够使用，例如：
+mc.ModuleBodyAppendText("module2","export__.show=show;");//之后可以使用show函数show();
+所以尽量将点击函数写在js中。
+
+2.对于变量的引出，可以通过引出该变量的get和set函数来对变量进项操作。直接引出是不能修改
+的，也不会动态变化的，引出无用。
