@@ -105,7 +105,7 @@ function getCookie(name){
 	else
 	return null;
 }
-//抛出事件给某元素
+//抛出事件给某元素(慎用，并没完全理解，总出现死循环)
 function throwMouseEventsToId(eventType,id){
 	  var event = document.createEvent('MouseEvents');
       event.initEvent(eventType, true,false);
