@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=10" />
+<title>xvlc</title>
+<script src="jQuery-2.2.0.min.js"></script>
+<script src="jQueryVlcNetCameraPlugin.js"></script>
+
+</head>
+<body>
+
+<div id="test"  style="position:absolute;left:0px;top:20px"></div>
+<div id="test2" style="width:500px;position:absolute;left:600px;top:20px"></div>
+
+
+<script type="text/javascript" >
+	
+	//固定写法
+	$("#test").ncVlc({
+		mrl:"rtsp://admin:eyecool2016@192.168.60.22/h264/ch1",
+		ratio:"16:9",
+		width:"500",
+		showtime:"true"
+	});
+	$("#test2").ncVlc({
+		mrl:"rtsp://admin:eyecool2016@192.168.60.134/h264/ch1",
+
+		width:"500",
+		showtime:"true"
+	});
+	function check(){
+		console.log("");
+	}
+</script>
+</body></html>
